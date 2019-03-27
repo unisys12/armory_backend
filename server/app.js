@@ -11,6 +11,7 @@ const sparrows = require("./routes/api/sparrows");
 const ships = require("./routes/api/ships");
 const ornaments = require("./routes/api/ornaments");
 const emblems = require("./routes/api/emblems");
+const categories = require("./routes/api/categories");
 
 // Middleware
 app.use(bodyParser.json());
@@ -26,6 +27,7 @@ app.use("/api/sparrows", sparrows);
 app.use("/api/ships", ships);
 app.use("/api/ornaments", ornaments);
 app.use("/api/emblems", emblems);
+app.use("/api/categories", categories);
 
 app.listen(port, () =>
   console.log(`Armory backdoor is now open on port ${port}`)
