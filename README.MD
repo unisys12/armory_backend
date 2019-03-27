@@ -9,7 +9,7 @@ Built very hastily, so a To-Do-List is in order
   `http://localhost:3001/api/emblems/` lists all the emblems, displaying on their `displayProperties` property.
   `http://localhost:3001/api/emblems/2182330181` returns a single Emblem by ID (hash value), displaying on their `displayProperties` property.
 
-Other Item Categories currently in the API are as follows,
+Other Item Types currently in the API are as follows,
 
 - Ships
 - Sparrows
@@ -17,5 +17,8 @@ Other Item Categories currently in the API are as follows,
 - Ghosts
 - Ornaments
 - Weapons
+
+Class based items can be accessed through the `/categoires/*` endpoint.
+ex: `http://localhost:3001/api/categories/warlock` - This will return all Warlock related items. You can query against each of the three classes currently in Destiny 2 _(Warlock, Hunter and Titan)_
 
 Grouping and other features have not been implemented yet.
