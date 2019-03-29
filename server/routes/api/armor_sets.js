@@ -16,4 +16,21 @@ router.get("/", async (req, res) => {
   );
 });
 
+router.get("/:class", async (req, res) => {
+  const items = await helpers.loadItemCollection();
+  res.send(
+    await items
+      .find(
+        {
+          $and: [
+            { itemCategoryHashes: 20 },
+            { classType: helpers.resolveClassType(req.params.class) }
+          ]
+        },
+        { projection: { displayProperties: 1 } }
+      )
+      .toArray()
+  );
+});
+
 module.exports = router;
