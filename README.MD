@@ -17,8 +17,7 @@ Other Item Types currently in the API are as follows,
 - Ghosts
 - Ornaments
 - Weapons
+- Armor-Sets _(http://localhost:3001/api/armor-sets/warlock)_
 
 Class based items can be accessed through the `/categoires/*` endpoint.
 ex: `http://localhost:3001/api/categories/warlock` - This will return all Warlock related items. You can query against each of the three classes currently in Destiny 2 _(Warlock, Hunter and Titan)_
-
-Grouping and other features have not been implemented yet.
