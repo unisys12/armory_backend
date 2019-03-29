@@ -4,8 +4,7 @@ if (process.env.SystemRoot == "C:\\Windows") {
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
-const mongo = require("mongodb");
-const MongoClient = mongo.MongoClient;
+const path = require("path");
 const port = process.env.PORT || 3001;
 const ghosts = require("./routes/api/ghosts");
 const armor = require("./routes/api/armor");
@@ -21,7 +20,7 @@ const armor_sets = require("./routes/api/armor_sets");
 app.use(bodyParser.json());
 
 app.get("/", (req, res) => {
-  res.send("Welcome to the Destiny Armory Defined API!");
+  res.sendFile(path.join(__dirname + "/static/index.html"));
 });
 
 app.use("/api/ghosts/", ghosts);
