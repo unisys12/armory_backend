@@ -4,7 +4,7 @@ const helpers = require("../../helpers");
 
 router.get("/", async (req, res) => {
   const items = await helpers.loadItemCollection();
-  res.send(
+  res.json(
     await items
       .find(
         {
@@ -18,7 +18,7 @@ router.get("/", async (req, res) => {
 
 router.get("/:class", async (req, res) => {
   const items = await helpers.loadItemCollection();
-  res.send(
+  res.json(
     await items
       .find(
         {

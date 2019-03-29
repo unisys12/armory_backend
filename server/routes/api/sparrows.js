@@ -4,7 +4,7 @@ const helpers = require("../../helpers");
 
 router.get("/", async (req, res) => {
   const items = await helpers.loadItemCollection();
-  res.send(
+  res.json(
     await items
       .find(
         {
@@ -19,7 +19,7 @@ router.get("/", async (req, res) => {
 router.get("/:id", async (req, res) => {
   const id = JSON.parse(req.params.id);
   const items = await helpers.loadItemCollection();
-  res.send(
+  res.json(
     await items
       .find(
         { $and: [{ itemCategoryHashes: 43 }, { _id: id }] },
