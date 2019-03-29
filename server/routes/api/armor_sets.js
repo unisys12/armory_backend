@@ -1,15 +1,15 @@
 const express = require("express");
+const mongodb = require("mongodb");
+
 const router = express.Router();
-const helpers = require("../../helpers");
 
 router.get("/", async (req, res) => {
-  const items = await helpers.loadItemCollection();
-  console.log(req.baseUrl);
+  const items = await loadItemCollection();
   res.send(
     await items
       .find(
         {
-          itemCategoryHashes: 56
+          itemCategoryHashes: 20
         },
         { projection: { displayProperties: 1 } }
       )
@@ -17,20 +17,8 @@ router.get("/", async (req, res) => {
   );
 });
 
-router.get("/:id", async (req, res) => {
-  const id = JSON.parse(req.params.id);
-  const items = await helpers.loadItemCollection();
-  res.send(
-    await items
-      .find(
-        { $and: [{ itemCategoryHashes: 56 }, { _id: id }] },
-        { projection: { displayProperties: 1 } }
-      )
-      .toArray()
-  );
-});
-
 async function loadItemCollection() {
+  console.log(process.env.DB_URL);
   const client = await mongodb.MongoClient.connect(process.env.DB_URL, {
     useNewUrlParser: true
   });

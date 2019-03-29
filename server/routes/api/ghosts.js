@@ -1,10 +1,9 @@
 const express = require("express");
-const mongodb = require("mongodb");
-
 const router = express.Router();
+const helpers = require("../../helpers");
 
 router.get("/", async (req, res) => {
-  const items = await loadItemCollection();
+  const items = await helpers.loadItemCollection();
   console.log(req.baseUrl);
   res.send(
     await items
@@ -20,7 +19,7 @@ router.get("/", async (req, res) => {
 
 router.get("/:id", async (req, res) => {
   const id = JSON.parse(req.params.id);
-  const items = await loadItemCollection();
+  const items = await helpers.loadItemCollection();
   res.send(
     await items
       .find(
@@ -30,14 +29,5 @@ router.get("/:id", async (req, res) => {
       .toArray()
   );
 });
-
-async function loadItemCollection() {
-  const client = await mongodb.MongoClient.connect(process.env.DB_URL, {
-    useNewUrlParser: true
-  });
-  return client
-    .db(process.env.DB_NAME)
-    .collection("DestinyInventoryItemDefinition");
-}
 
 module.exports = router;
