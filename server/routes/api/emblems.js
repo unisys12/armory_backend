@@ -5,6 +5,7 @@ const router = express.Router();
 
 router.get("/", async (req, res) => {
   const items = await loadItemCollection();
+  console.log(req.baseUrl);
   res.send(
     await items
       .find(
@@ -31,11 +32,12 @@ router.get("/:id", async (req, res) => {
 });
 
 async function loadItemCollection() {
-  const client = await mongodb.MongoClient.connect(
-    "mongodb://localhost:27017",
-    { useNewUrlParser: true }
-  );
-  return client.db("Local_Armory").collection("DestinyInventoryItemDefinition");
+  const client = await mongodb.MongoClient.connect(process.env.DB_URL, {
+    useNewUrlParser: true
+  });
+  return client
+    .db(process.env.DB_NAME)
+    .collection("DestinyInventoryItemDefinition");
 }
 
 module.exports = router;
