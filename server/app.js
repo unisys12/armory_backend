@@ -1,4 +1,4 @@
-if (process.env.SystemRoot == "Windows") {
+if (process.env.SystemRoot == "C:\\Windows") {
   require("dotenv").config();
 }
 const express = require("express");
@@ -15,6 +15,7 @@ const ships = require("./routes/api/ships");
 const ornaments = require("./routes/api/ornaments");
 const emblems = require("./routes/api/emblems");
 const categories = require("./routes/api/categories");
+const armor_sets = require("./routes/api/armor_sets");
 
 // Middleware
 app.use(bodyParser.json());
@@ -31,6 +32,7 @@ app.use("/api/ships", ships);
 app.use("/api/ornaments", ornaments);
 app.use("/api/emblems", emblems);
 app.use("/api/categories", categories);
+app.use("/api/armor-sets/", armor_sets);
 
 app.listen(port, () =>
   console.log(`Armory backdoor is now open on port ${port}`)
