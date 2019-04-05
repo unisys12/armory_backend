@@ -3,8 +3,12 @@ const router = express.Router();
 const helpers = require("../../helpers");
 
 router.get("/", async (req, res) => {
-  const items = await helpers.loadItemCollection();
   console.log(req.baseUrl);
+  res.setHeader(
+    "Access-Control-Allow-Origin",
+    `${process.env.CORS_ORIGIN_ENDPOINT}`
+  );
+  const items = await helpers.loadItemCollection();
   res.send(
     await items
       .find(
@@ -19,6 +23,11 @@ router.get("/", async (req, res) => {
 
 router.get("/:id", async (req, res) => {
   const id = JSON.parse(req.params.id);
+  console.log(req.baseUrl);
+  res.setHeader(
+    "Access-Control-Allow-Origin",
+    `${process.env.CORS_ORIGIN_ENDPOINT}`
+  );
   const items = await helpers.loadItemCollection();
   res.json(
     await items
