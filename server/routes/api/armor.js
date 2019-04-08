@@ -39,4 +39,24 @@ router.get("/:id", async (req, res) => {
   );
 });
 
+router.get("/set/:class", async (req, res) => {
+  console.log(req.baseUrl);
+  res.setHeader(
+    "Access-Control-Allow-Origin",
+    `${process.env.CORS_ORIGIN_ENDPOINT}`
+  );
+  const items = await helpers.loadItemCollection();
+  res.json(
+    await items
+      .find(
+        {
+          itemCategoryHashes: 20,
+          classType: helpers.resolveClassType(req.params.class)
+        },
+        { projection: { displayProperties: 1 } }
+      )
+      .toArray()
+  );
+});
+
 module.exports = router;
