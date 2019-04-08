@@ -4,7 +4,7 @@ const helpers = require("../../helpers");
 const router = express.Router();
 
 router.get("/:class", async (req, res) => {
-  console.log(req.baseUrl);
+  console.log(`${req.baseUrl}/${req.params.class}`);
   res.setHeader(
     "Access-Control-Allow-Origin",
     `${process.env.CORS_ORIGIN_ENDPOINT}`

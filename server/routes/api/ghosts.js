@@ -23,7 +23,7 @@ router.get("/", async (req, res) => {
 
 router.get("/:id", async (req, res) => {
   const id = JSON.parse(req.params.id);
-  console.log(req.baseUrl);
+  console.log(`${req.baseUrl}/${req.params.class}`);
   res.setHeader(
     "Access-Control-Allow-Origin",
     `${process.env.CORS_ORIGIN_ENDPOINT}`
