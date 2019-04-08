@@ -39,13 +39,4 @@ router.get("/:id", async (req, res) => {
   );
 });
 
-async function loadItemCollection() {
-  const client = await mongodb.MongoClient.connect(process.env.DB_URL, {
-    useNewUrlParser: true
-  });
-  return client
-    .db(process.env.DB_NAME)
-    .collection("DestinyInventoryItemDefinition");
-}
-
 module.exports = router;
