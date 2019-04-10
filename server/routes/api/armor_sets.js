@@ -4,7 +4,6 @@ const helpers = require("../../helpers");
 let group = [];
 router.get("/", async (req, res) => {
   try {
-    // const DB = await helpers.loadArmoryDB();
     const DB = await helpers.loadItemCollection();
     res.json(
       await DB.aggregate([
