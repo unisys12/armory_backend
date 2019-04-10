@@ -21,7 +21,7 @@ router.get("/", async (req, res) => {
           $project: {
             "displayProperties.name": 1,
             "set.displayProperties": 1,
-            "set.collectibleHash": 1,
+            "set.loreeHash": 1,
             "set.hash": 1,
             "set.screenshot": 1,
             "set.itemTypeAndTierDisplayName": 1
