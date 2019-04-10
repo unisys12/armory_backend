@@ -1,19 +1,33 @@
 const express = require("express");
 const router = express.Router();
 const helpers = require("../../helpers");
-
+let group = [];
 router.get("/", async (req, res) => {
-  const items = await helpers.loadItemCollection();
-  res.json(
-    await items
-      .find(
+  try {
+    // const DB = await helpers.loadArmoryDB();
+    const DB = await helpers.loadItemCollection();
+    res.json(
+      await DB.aggregate([
+        { $match: { itemTypeDisplayName: "Armor Set" } },
         {
-          itemCategoryHashes: 20
+          $lookup: {
+            localField: "gearset.itemList",
+            foreignField: "_id",
+            from: "DestinyInventoryItemDefinition",
+            as: "set"
+          }
         },
-        { projection: { displayProperties: 1 } }
-      )
-      .toArray()
-  );
+        {
+          $project: {
+            "displayProperties.name": 1,
+            set: 1
+          }
+        }
+      ]).toArray()
+    );
+  } catch (e) {
+    res.status(500).send(`Something broke! ${e}`);
+  }
 });
 
 router.get("/:class", async (req, res) => {
