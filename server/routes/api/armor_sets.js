@@ -16,10 +16,15 @@ router.get("/", async (req, res) => {
             as: "set"
           }
         },
+        { $unwind: "$set" },
         {
           $project: {
             "displayProperties.name": 1,
-            set: 1
+            "set.displayProperties": 1,
+            "set.collectibleHash": 1,
+            "set.hash": 1,
+            "set.screenshot": 1,
+            "set.itemTypeAndTierDisplayName": 1
           }
         }
       ]).toArray()
