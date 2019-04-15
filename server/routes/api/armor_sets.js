@@ -3,6 +3,7 @@ const router = express.Router();
 const helpers = require("../../helpers");
 let group = [];
 router.get("/", async (req, res) => {
+  console.log(req.baseUrl);
   try {
     const DB = await helpers.loadItemCollection();
     res.json(
@@ -16,7 +17,6 @@ router.get("/", async (req, res) => {
             as: "set"
           }
         },
-        { $unwind: "$set" },
         {
           $project: {
             "displayProperties.name": 1,
