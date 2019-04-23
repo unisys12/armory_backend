@@ -20,6 +20,7 @@ router.get("/", async (req, res) => {
         {
           $project: {
             "displayProperties.name": 1,
+            "displayProperties.description": 1,
             "set.displayProperties": 1,
             "set.loreeHash": 1,
             "set.hash": 1,
