@@ -12,7 +12,7 @@ router.get("/", async (req, res) => {
         {
           $lookup: {
             localField: "gearset.itemList",
-            foreignField: "_id",
+            foreignField: "hash",
             from: "DestinyInventoryItemDefinition",
             as: "set"
           }
